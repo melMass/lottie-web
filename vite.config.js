@@ -7,8 +7,22 @@ import pkg from "./package.json" assert { type: "json" };
 
 const version = pkg.version;
 let processed_chunks = 0;
+const dev = process.env.NODE_ENV !== "production";
 
 const PLUGINS = {
+    deepIndex: ({ path }) => {
+        return {
+            name: "deep-index",
+            configureServer(server) {
+                server.middlewares.use((req, res, next) => {
+                    if (req.url === "/") {
+                        req.url = path;
+                    }
+                    next();
+                });
+            },
+        };
+    },
     noTreeShakingForStandalonePlugin: () => {
         return {
             name: "no-treeshaking-for-standalone",
@@ -53,14 +67,15 @@ export default defineConfig({
             babelHelpers: "runtime",
             skipPreflightCheck: true,
         }),
+        dev && PLUGINS.deepIndex({ path: "/player/index" }),
 
         PLUGINS.injectVersion(),
         PLUGINS.addNavigatorValidation(),
     ],
     build: {
+        minify: "esbuild",
         target: "modules",
         lib: {
-            // Could also be a dictionary or array of multiple entry points
             entry: resolve(__dirname, "player/js/modules/full.js"),
             name: "lottie",
             // the proper extensions will be added
@@ -73,10 +88,13 @@ export default defineConfig({
             treeshake: true,
             output: {
                 esModule: true,
+                // entryFileNames: "[name]_[format].js",
             },
-            input: {
-                index: resolve(__dirname, "player/index.html"),
-            },
+            input: dev
+                ? {
+                      index: resolve(__dirname, "player/index.html"),
+                  }
+                : null,
         },
     },
 });

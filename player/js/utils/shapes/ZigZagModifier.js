@@ -63,10 +63,10 @@ function zigZagCorner(outputBezier, path, cur, amplitude, frequency, pointType, 
   var prevPoint = path.v[cur === 0 ? path._length - 1 : cur - 1];
   var nextPoint = path.v[(cur + 1) % path._length];
   var prevDist = pointType === 2
-    ? Math.sqrt(Math.pow(point[0] - prevPoint[0], 2) + Math.pow(point[1] - prevPoint[1], 2))
+    ? Math.sqrt((point[0] - prevPoint[0])**2 + (point[1] - prevPoint[1])**2)
     : 0;
   var nextDist = pointType === 2
-    ? Math.sqrt(Math.pow(point[0] - nextPoint[0], 2) + Math.pow(point[1] - nextPoint[1], 2))
+    ? Math.sqrt((point[0] - nextPoint[0])**2 + (point[1] - nextPoint[1])**2)
     : 0;
 
   setPoint(
@@ -86,7 +86,7 @@ function zigZagSegment(outputBezier, segment, amplitude, frequency, pointType, d
     var t = (i + 1) / (frequency + 1);
 
     var dist = pointType === 2
-      ? Math.sqrt(Math.pow(segment.points[3][0] - segment.points[0][0], 2) + Math.pow(segment.points[3][1] - segment.points[0][1], 2))
+      ? Math.sqrt((segment.points[3][0] - segment.points[0][0])**2 + (segment.points[3][1] - segment.points[0][1])**2)
       : 0;
 
     var angle = segment.normalAngle(t);

@@ -23,9 +23,9 @@ function bezFunction() {
     if (z1 === 0 && z2 === 0 && z3 === 0) {
       return pointOnLine2D(x1, y1, x2, y2, x3, y3);
     }
-    var dist1 = math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2) + math.pow(z2 - z1, 2));
-    var dist2 = math.sqrt(math.pow(x3 - x1, 2) + math.pow(y3 - y1, 2) + math.pow(z3 - z1, 2));
-    var dist3 = math.sqrt(math.pow(x3 - x2, 2) + math.pow(y3 - y2, 2) + math.pow(z3 - z2, 2));
+    var dist1 = math.sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2);
+    var dist2 = math.sqrt((x3 - x1)**2 + (y3 - y1)**2 + (z3 - z1)**2);
+    var dist3 = math.sqrt((x3 - x2)**2 + (y3 - y2)**2 + (z3 - z2)**2);
     var diffDist;
     if (dist1 > dist2) {
       if (dist1 > dist3) {

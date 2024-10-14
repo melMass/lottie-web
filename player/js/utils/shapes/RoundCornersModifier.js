@@ -53,7 +53,7 @@ RoundCornersModifier.prototype.processPath = function (path, round) {
         } else {
           closerV = path.v[i - 1];
         }
-        distance = Math.sqrt(Math.pow(currentV[0] - closerV[0], 2) + Math.pow(currentV[1] - closerV[1], 2));
+        distance = Math.sqrt((currentV[0] - closerV[0])**2 + (currentV[1] - closerV[1])**2);
         newPosPerc = distance ? Math.min(distance / 2, round) / distance : 0;
         iX = currentV[0] + (closerV[0] - currentV[0]) * newPosPerc;
         vX = iX;
@@ -69,7 +69,7 @@ RoundCornersModifier.prototype.processPath = function (path, round) {
         } else {
           closerV = path.v[i + 1];
         }
-        distance = Math.sqrt(Math.pow(currentV[0] - closerV[0], 2) + Math.pow(currentV[1] - closerV[1], 2));
+        distance = Math.sqrt((currentV[0] - closerV[0])**2 + (currentV[1] - closerV[1])**2);
         newPosPerc = distance ? Math.min(distance / 2, round) / distance : 0;
         oX = currentV[0] + (closerV[0] - currentV[0]) * newPosPerc;
         vX = oX;

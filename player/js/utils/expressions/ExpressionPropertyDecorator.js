@@ -418,7 +418,7 @@ function addPropertyDecorator() {
       var pt2 = this.pointOnPath(perc + 0.001, time);
       var xLength = pt2[0] - pt1[0];
       var yLength = pt2[1] - pt1[1];
-      var magnitude = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
+      var magnitude = Math.sqrt(xLength**2 + yLength**2);
       if (magnitude === 0) {
         return [0, 0];
       }

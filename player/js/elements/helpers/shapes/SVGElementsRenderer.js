@@ -180,7 +180,7 @@ const SVGElementsRenderer = (function () {
     } else {
       var rad;
       if (itemData.s._mdf || itemData.e._mdf || isFirstFrame) {
-        rad = Math.sqrt(Math.pow(pt1[0] - pt2[0], 2) + Math.pow(pt1[1] - pt2[1], 2));
+        rad = Math.sqrt((pt1[0] - pt2[0])**2 + (pt1[1] - pt2[1])**2);
         gfill.setAttribute('r', rad);
         if (hasOpacity && !itemData.g._collapsable) {
           itemData.of.setAttribute('r', rad);
@@ -188,7 +188,7 @@ const SVGElementsRenderer = (function () {
       }
       if (itemData.e._mdf || itemData.h._mdf || itemData.a._mdf || isFirstFrame) {
         if (!rad) {
-          rad = Math.sqrt(Math.pow(pt1[0] - pt2[0], 2) + Math.pow(pt1[1] - pt2[1], 2));
+          rad = Math.sqrt((pt1[0] - pt2[0])**2 + (pt1[1] - pt2[1])**2);
         }
         var ang = Math.atan2(pt2[1] - pt1[1], pt2[0] - pt1[0]);
 

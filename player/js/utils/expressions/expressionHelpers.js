@@ -32,7 +32,7 @@ const expressionHelpers = (function () {
     if (v1.length) {
       var i;
       for (i = 0; i < v1.length; i += 1) {
-        speed += Math.pow(v2[i] - v1[i], 2);
+        speed += (v2[i] - v1[i])**2;
       }
       speed = Math.sqrt(speed) * 100;
     } else {

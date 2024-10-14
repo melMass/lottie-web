@@ -461,7 +461,7 @@ CVShapeElement.prototype.renderGradientFill = function (styleData, itemData, gro
     if (styleData.t === 1) {
       grd = ctx.createLinearGradient(pt1[0], pt1[1], pt2[0], pt2[1]);
     } else {
-      var rad = Math.sqrt(Math.pow(pt1[0] - pt2[0], 2) + Math.pow(pt1[1] - pt2[1], 2));
+      var rad = Math.sqrt((pt1[0] - pt2[0])**2 + (pt1[1] - pt2[1])**2);
       var ang = Math.atan2(pt2[1] - pt1[1], pt2[0] - pt1[0]);
 
       var percent = itemData.h.v;
